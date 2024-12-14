@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from services.playlist_service import get_all_songs,serialize_song,get_song_by_title
 
 
@@ -6,9 +6,20 @@ songs_bp = Blueprint('songs',__name__)
 
 @songs_bp.route('/songs',methods=['GET'])
 def getAllSongs():
-    songs  = get_all_songs()
-    songs_data = [serialize_song(song) for song in songs]
-    return jsonify(songs_data)
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 10, type=int)
+    paginated_songs  = get_all_songs(page,per_page)
+
+    songs_data = [serialize_song(song) for song in paginated_songs]
+
+    response = {
+        'total' : paginated_songs.total,
+        'page' : page,
+        'per_page': per_page,
+        'total_pages' : paginated_songs.pages,
+        'songs' : songs_data
+    }
+    return jsonify(response)
     
 @songs_bp.route('/songs/<string:title>', methods=['GET'])
 def getSongByTitle(title):
