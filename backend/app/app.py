@@ -3,7 +3,7 @@ import json
 from routes import songs_bp
 from models import db, Song
 from flask_cors import CORS
-
+from database import db
 app = Flask(__name__)
 
 CORS(app)
@@ -40,7 +40,7 @@ def insert_data():
         except Exception as e:
             db.session.rollback()
 
-app.register_blueprint(songs_bp,url_prefix='/')
+app.register_blueprint(songs_bp,url_prefix='/songs')
 
 if __name__ == '__main__':
     with app.app_context():

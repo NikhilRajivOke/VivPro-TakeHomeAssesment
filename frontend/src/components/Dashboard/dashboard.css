@@ -1,0 +1,46 @@
+.layout {
+  width: 95%;
+  padding: 3%;
+  display: grid;
+  grid-template-columns: 30% 65%;
+  grid-template-rows: repeat(3, 1fr);
+  column-gap: 2%;
+  .grid-cell {
+    padding: 2%;
+  }
+  .playlist-table {
+    grid-row: span 3;
+    padding: 3% 0%;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 2%;
+  }
+
+  .layout .playlist-table {
+    grid-row: auto;
+    padding: 2%;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout {
+    width: 100%;
+    padding: 2%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 1%;
+  }
+
+  .layout .grid-cell {
+    padding: 1%;
+  }
+
+  .layout .playlist-table {
+    padding: 1%;
+  }
+}
