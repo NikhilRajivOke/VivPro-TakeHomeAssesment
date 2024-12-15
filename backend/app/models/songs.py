@@ -1,7 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
-
+from database import db
 class Song(db.Model):
     index = db.Column(db.Integer, autoincrement=True)
     id = db.Column(db.String(255),primary_key=True)
@@ -14,7 +12,7 @@ class Song(db.Model):
     duration_ms = db.Column(db.Float,nullable=False)
     num_sections = db.Column(db.Integer,nullable=False)
     num_segments = db.Column(db.Integer,nullable=False)
-    rating = db.Column(db.Float,nullable=True)
+    rating = db.Column(db.Float,nullable=True,default=0.0)
 
     def __repr__(self):
         return f"<Item {self.id} - {self.title}>"

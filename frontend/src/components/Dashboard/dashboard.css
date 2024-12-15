@@ -9,7 +9,38 @@
     padding: 2%;
   }
   .playlist-table {
-      grid-row: span 3;
-      padding: 3% 0%;
-    }
+    grid-row: span 3;
+    padding: 3% 0%;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 2%;
+  }
+
+  .layout .playlist-table {
+    grid-row: auto;
+    padding: 2%;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout {
+    width: 100%;
+    padding: 2%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 1%;
+  }
+
+  .layout .grid-cell {
+    padding: 1%;
+  }
+
+  .layout .playlist-table {
+    padding: 1%;
+  }
 }
