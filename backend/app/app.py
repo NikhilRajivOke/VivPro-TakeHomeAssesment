@@ -2,9 +2,11 @@ from flask import Flask, Blueprint
 import json
 from routes import songs_bp
 from models import db, Song
+from flask_cors import CORS
 
 app = Flask(__name__)
 
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../playlist.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
