@@ -1,10 +1,12 @@
 from flask import Flask, Blueprint
 import json
-from routes import userRoutes
+from routes import songs_bp
 from models import db, Song
+from flask_cors import CORS
 
 app = Flask(__name__)
 
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../playlist.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -38,7 +40,7 @@ def insert_data():
         except Exception as e:
             db.session.rollback()
 
-app.register_blueprint(userRoutes,url_prefix='/userRoutes')
+app.register_blueprint(songs_bp,url_prefix='/')
 
 if __name__ == '__main__':
     with app.app_context():
