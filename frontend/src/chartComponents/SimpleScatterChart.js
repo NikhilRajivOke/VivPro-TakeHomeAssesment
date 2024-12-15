@@ -11,7 +11,7 @@ import {
 
 export const SimpleScatterChart = ({ danceabilityData }) => {
   return (
-    <ResponsiveContainer height={400}>
+    <ResponsiveContainer>
       <ScatterChart>
         <CartesianGrid />
         <XAxis

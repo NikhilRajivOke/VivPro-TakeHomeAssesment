@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import { Paper } from "@mui/material";
-import { CustomToolbar } from "./CustomToolbar";
-import { GetSong } from "./GetSong";
-import { SimpleScatterChart } from "../chartComponents/SimpleScatterChart";
-import { HistogramChart } from "../chartComponents/HistogramChart";
-import { SimpleBarChart } from "../chartComponents/SimpleBarChart";
+import {CustomToolbar } from '../Toolbar/CustomToolbar'
+import { SimpleScatterChart } from "../../chartComponents/SimpleScatterChart";
+import { SimpleBarChart } from "../../chartComponents/SimpleBarChart";
 import "./dashboard.css";
+
 export const DashBoard = () => {
   const [gridState, setGridState] = useState({
     rowCount: 0,
@@ -119,25 +118,7 @@ export const DashBoard = () => {
           }))}
         />
       </div>
-      <div className="grid-cell">
-        <SimpleBarChart
-          data={gridState.rows.map((row) => ({
-            title: row.title,
-            acousticness: row.acousticness * 100,
-            tempo: row.tempo,
-          }))}
-        />
-      </div>
-      <div className="grid-cell">
-        <SimpleBarChart
-          data={gridState.rows.map((row) => ({
-            title: row.title,
-            acousticness: row.acousticness * 100,
-            tempo: row.tempo,
-          }))}
-        />
-      </div>
-      <Paper sx={{ width: "100%" }} className="playlist-table">
+      <Paper className="playlist-table">
         <DataGrid
           pagination
           paginationMode="server"
@@ -152,10 +133,30 @@ export const DashBoard = () => {
           slots={{
             toolbar: CustomToolbar,
           }}
+          slotProps={{
+            toolbar: { handleGetSong },
+          }}
           sx={{ border: 0 }}
         ></DataGrid>
-        <GetSong getSongHandler={handleGetSong} />
       </Paper>
+      <div className="grid-cell">
+        <SimpleBarChart
+          data={gridState.rows.map((row) => ({
+            title: row.title,
+            acousticness: row.acousticness * 100,
+            tempo: row.tempo,
+          }))}
+        />
+      </div>
+      <div className="grid-cell">
+        <SimpleBarChart
+          data={gridState.rows.map((row) => ({
+            title: row.title,
+            acousticness: row.acousticness * 100,
+            tempo: row.tempo,
+          }))}
+        />
+      </div>
     </div>
   );
 };

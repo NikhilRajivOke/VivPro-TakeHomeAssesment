@@ -12,7 +12,7 @@ import {
 
 export const SimpleBarChart = ({ data }) => {
   return (
-    <ResponsiveContainer height={300}>
+    <ResponsiveContainer>
       <BarChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="title" />
