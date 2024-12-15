@@ -4,7 +4,10 @@ import axios from "axios";
 import { Paper } from "@mui/material";
 import { CustomToolbar } from "./CustomToolbar";
 import { GetSong } from "./GetSong";
-
+import { SimpleScatterChart } from "../chartComponents/SimpleScatterChart";
+import { HistogramChart } from "../chartComponents/HistogramChart";
+import { SimpleBarChart } from "../chartComponents/SimpleBarChart";
+import "./dashboard.css";
 export const DashBoard = () => {
   const [gridState, setGridState] = useState({
     rowCount: 0,
@@ -12,7 +15,7 @@ export const DashBoard = () => {
   });
   const [headerColumns, setHeaderColumns] = useState([]);
   const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const pageSizeOptions = [5, 10, 20, 50, 100];
@@ -107,8 +110,34 @@ export const DashBoard = () => {
   };
 
   return (
-    <>
-      <Paper sx={{ width: "100%" }}>
+    <div className="layout">
+      <div className="grid-cell">
+        <SimpleScatterChart
+          danceabilityData={gridState.rows.map((row) => ({
+            x: row.title,
+            y: Number(row.danceability),
+          }))}
+        />
+      </div>
+      <div className="grid-cell">
+        <SimpleBarChart
+          data={gridState.rows.map((row) => ({
+            title: row.title,
+            acousticness: row.acousticness * 100,
+            tempo: row.tempo,
+          }))}
+        />
+      </div>
+      <div className="grid-cell">
+        <SimpleBarChart
+          data={gridState.rows.map((row) => ({
+            title: row.title,
+            acousticness: row.acousticness * 100,
+            tempo: row.tempo,
+          }))}
+        />
+      </div>
+      <Paper sx={{ width: "100%" }} className="playlist-table">
         <DataGrid
           pagination
           paginationMode="server"
@@ -125,8 +154,8 @@ export const DashBoard = () => {
           }}
           sx={{ border: 0 }}
         ></DataGrid>
+        <GetSong getSongHandler={handleGetSong} />
       </Paper>
-      <GetSong getSongHandler={handleGetSong} />
-    </>
+    </div>
   );
 };
