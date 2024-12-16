@@ -4,7 +4,13 @@ import { Rating } from "@mui/material";
 export const RatingInput = ({ rating, onRatingChange }) => {
   if (rating !== 0) {
     return (
-      <Rating name="read-only-rating" value={rating} readOnly precision={0.5} />
+      <Rating
+        name="read-only-rating"
+        value={rating}
+        readOnly
+        precision={0.5}
+        role="slider"
+      />
     );
   }
 
@@ -14,6 +20,7 @@ export const RatingInput = ({ rating, onRatingChange }) => {
       value={0}
       onChange={(e, newValue) => onRatingChange(newValue)}
       precision={0.5}
+      role="slider"
     />
   );
 };
