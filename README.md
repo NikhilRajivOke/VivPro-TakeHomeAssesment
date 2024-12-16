@@ -58,3 +58,10 @@ The backend will be running on `http://localhost:5000`.
 
 The frontend will be running on `http://localhost:3000`.
 
+## Future Scope
+
+- **Adding Unit and Integration Tests**: Enhance the test coverage for both backend and frontend to ensure better code quality and reliability.
+- **Setting Up CI/CD**: Integrate Continuous Integration and Continuous Deployment pipelines to automate testing and deployment, ensuring faster iterations and smoother deployments.
+- **Optimizing Frontend with Redux**: Implement Redux state management for better handling of application state across components, and introduce dynamic loading (e.g., lazy loading) to optimize performance and reduce the initial load time.
+- **Database Migration**: Incorporate database migration tools such as Flask-Migrate for easier management of database schema changes.
+- **Security Enhancements**: Implement security best practices, such as input validation, JWT authentication, and HTTPS setup for secure communication.
