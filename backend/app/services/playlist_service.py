@@ -1,6 +1,6 @@
-from models.songs import Song
+from app.models.songs import Song
 from collections import OrderedDict
-from database import db
+from app.database import db
 
 def get_all_songs(page,per_page):
     print("page : " , page , " pagesize :", per_page)
