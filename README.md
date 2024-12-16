@@ -1,52 +1,50 @@
 # VivPro-TakeHomeAssesment
 
-This repository contains the solution for the take-home assessment for VivPro.ai. The assessment involves building a full-stack application with a front-end that interacts with a back-end API.
+This repository contains the solution for the VivPro.ai take-home assessment, involving a full-stack application with a React frontend and a Flask backend using SQLite for the database.
 
 ## Project Structure
 
-- `frontend/`: Contains the React.js frontend application.
-- `backend/`: Contains the Python Flask backend application.
+- `frontend/`: React.js frontend application.
+- `backend/`: Python Flask backend API.
 
 ## Setup Instructions
 
 ### Backend
 
-1. Navigate to the `backend` directory and create a virtual environment:
+1. Install the required backend dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. Navigate to the `backend/` directory and create a virtual environment:
 
     ```bash
     cd backend
     python -m venv venv
     ```
 
-2. Activate the virtual environment:
+3. Activate the virtual environment:
     - On Windows: `venv\Scripts\activate`
     - On macOS/Linux: `source venv/bin/activate`
 
-3. Install the backend dependencies:
+4. Start the Flask server:
 
     ```bash
-    pip install -r requirements.txt
+    python run.py
     ```
 
-4. Ensure that PostgreSQL is running and configure the database in `config.py`.
-
-5. Start the Flask server:
-
-    ```bash
-    python app.py
-    ```
-
-The backend will now be running on `http://localhost:5000`.
+The backend will be running on `http://localhost:5000`.
 
 ### Frontend
 
-1. After the backend is up and running, navigate to the `frontend` directory:
+1. After the backend is running, navigate to the `frontend/` directory:
 
     ```bash
     cd frontend
     ```
 
-2. Install the frontend dependencies:
+2. Install frontend dependencies:
 
     ```bash
     npm install
@@ -58,4 +56,5 @@ The backend will now be running on `http://localhost:5000`.
     npm start
     ```
 
-The frontend will now be running on `http://localhost:3000`.
+The frontend will be running on `http://localhost:3000`.
+
