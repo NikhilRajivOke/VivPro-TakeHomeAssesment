@@ -1,6 +1,11 @@
 .songInput {
-  width: 30%;
+  width: 60%;
   display: flex;
-  justify-content: space-between;
   padding: 1%;
+  height:80%;
+
+  .btn {
+    padding: 0% 10%;
+    margin-left: 10px;
+  }
 }

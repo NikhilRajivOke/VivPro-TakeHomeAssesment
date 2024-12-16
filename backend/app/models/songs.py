@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from database import db
+from app.database import db
+
 class Song(db.Model):
     index = db.Column(db.Integer, autoincrement=True)
     id = db.Column(db.String(255),primary_key=True)

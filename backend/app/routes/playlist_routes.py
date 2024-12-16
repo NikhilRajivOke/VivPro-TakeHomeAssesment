@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from services.playlist_service import get_all_songs,serialize_song,get_song_by_title,update_song_rating_by_id
+from app.services.playlist_service import get_all_songs,serialize_song,get_song_by_title,update_song_rating_by_id
 import json
 
 songs_bp = Blueprint('songs',__name__)
@@ -39,10 +39,13 @@ def getSongByTitle(title):
         return jsonify({"error": "Song not found"}), 404
 
 
-@songs_bp.route('/<string:id>/<float:rating>', methods=['POST'])
+@songs_bp.route('/<string:id>/<rating>', methods=['POST'])
 def updateSongRating(id,rating):
+    try:
+        rating = float(rating)
+    except ValueError:
+        return jsonify({"error": "Invalid input. 'id' and 'rating' are required."}), 400
 
-    print(f"Updating song with ID: {id} to new rating: {rating}")
     if not id or rating is None:
         return jsonify({"error": "Invalid input. 'id' and 'rating' are required."}), 400
 
