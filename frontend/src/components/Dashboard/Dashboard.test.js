@@ -3,7 +3,6 @@ import { DashBoard } from "./DashBoard";
 import { useFetchSongs } from "../../customHooks/useFetchSongs";
 import { usePagination } from "../../customHooks/usePagination";
 
-// Mock custom hooks
 jest.mock("../../customHooks/useFetchSongs");
 jest.mock("../../customHooks/usePagination");
 
@@ -12,11 +11,9 @@ describe("DashBoard Component", () => {
   let mockUsePagination;
 
   beforeEach(() => {
-    // Mock the custom hooks
     mockUseFetchSongs = useFetchSongs;
     mockUsePagination = usePagination;
 
-    // Set up the mocks
     mockUsePagination.mockReturnValue({
       page: 0,
       pageSize: 10,
@@ -42,7 +39,6 @@ describe("DashBoard Component", () => {
   test("renders the dashboard layout", () => {
     render(<DashBoard />);
 
-    // Check for the presence of the charts and DataGrid
     expect(screen.getByText("Song 1")).toBeInTheDocument();
     expect(screen.getByText("Song 2")).toBeInTheDocument();
     expect(screen.getByRole("grid")).toBeInTheDocument();
@@ -52,10 +48,8 @@ describe("DashBoard Component", () => {
   test("fires search function when a song title is clicked", async () => {
     render(<DashBoard />);
 
-    // Simulate clicking a song title
     fireEvent.click(screen.getByText("Song 1"));
 
-    // Ensure the fetchPlaylist function is called with the updated search
     await waitFor(() =>
       expect(mockUseFetchSongs().fetchPlaylist).toHaveBeenCalled()
     );
@@ -64,7 +58,6 @@ describe("DashBoard Component", () => {
   test("renders the SimpleScatterChart with correct data", () => {
     render(<DashBoard />);
 
-    // Check if the SimpleScatterChart is rendered
     const scatterChart = screen.getByTestId("scatter-chart"); // Assuming you add a test ID in the component
     expect(scatterChart).toBeInTheDocument();
   });
@@ -72,7 +65,6 @@ describe("DashBoard Component", () => {
   test("renders the SimpleBarChart with correct data", () => {
     render(<DashBoard />);
 
-    // Check if the SimpleBarChart is rendered
     const barChart = screen.getByTestId("bar-chart"); // Assuming you add a test ID in the component
     expect(barChart).toBeInTheDocument();
   });
@@ -80,7 +72,6 @@ describe("DashBoard Component", () => {
   test("displays the correct pagination options", () => {
     render(<DashBoard />);
 
-    // Check for pagination options
     const paginationOptions = screen.getByRole("combobox");
     expect(paginationOptions).toBeInTheDocument();
   });
