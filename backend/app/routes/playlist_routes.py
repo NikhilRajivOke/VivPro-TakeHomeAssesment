@@ -39,7 +39,7 @@ def getSongByTitle(title):
         return jsonify({"error": "Song not found"}), 404
 
 
-@songs_bp.route('/<string:id>/<rating>', methods=['POST'])
+@songs_bp.route('/<string:id>/<rating>', methods=['PUT'])
 def updateSongRating(id,rating):
     try:
         rating = float(rating)
@@ -49,7 +49,7 @@ def updateSongRating(id,rating):
     if not id or rating is None:
         return jsonify({"error": "Invalid input. 'id' and 'rating' are required."}), 400
 
-    
+    print(f'id : {id} and rating : {rating}')
     updated_song = update_song_rating_by_id(id,rating)
 
     if updated_song:

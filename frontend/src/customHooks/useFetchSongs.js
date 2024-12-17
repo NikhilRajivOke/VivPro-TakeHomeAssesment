@@ -74,7 +74,7 @@ export const useFetchSongs = (page, pageSize, search) => {
     const { id } = params.row;
 
     try {
-      const { data, status } = await axios.post(
+      const { data, status } = await axios.put(
         `http://127.0.0.1:5000/songs/${id}/${newValue}`
       );
 
